@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="8dp"
+    android:gravity="center"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".FragmentStep1">
+
+    <TextView
+        android:id="@+id/title"
+        android:textAlignment="center"
+        android:text="Basic Details"
+        android:textColor="#000"
+        android:textSize="24sp"
+        android:layout_alignParentTop="true"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <android.support.v7.widget.AppCompatEditText
+        android:layout_below="@id/title"
+        android:id="@+id/fname"
+        android:layout_marginTop="8dp"
+        app:autoSizeMaxTextSize="100sp"
+        app:autoSizeMinTextSize="8sp"
+        app:autoSizeStepGranularity="2sp"
+        app:autoSizeTextType="uniform"
+        android:hint="Enter first name"
+        android:layout_width="match_parent"
+        android:layout_height="40dp" />
+
+    <android.support.v7.widget.AppCompatEditText
+        android:id="@+id/lname"
+        android:layout_marginTop="8dp"
+        app:autoSizeMaxTextSize="100sp"
+        android:layout_below="@id/fname"
+        app:autoSizeMinTextSize="8sp"
+        app:autoSizeStepGranularity="2sp"
+        app:autoSizeTextType="uniform"
+        android:hint="Enter last name"
+        android:layout_width="match_parent"
+        android:layout_height="40dp" />
+
+    <android.support.v7.widget.AppCompatEditText
+        android:id="@+id/date"
+        android:layout_below="@id/lname"
+        android:layout_marginTop="8dp"
+        app:autoSizeMaxTextSize="100sp"
+        app:autoSizeMinTextSize="8sp"
+        app:autoSizeStepGranularity="2sp"
+        app:autoSizeTextType="uniform"
+        android:inputType="date"
+        android:hint="Enter date of birth"
+        android:layout_width="match_parent"
+        android:layout_height="40dp" />
+
+
+
+    <android.support.v7.widget.AppCompatEditText
+        android:id="@+id/weight"
+        android:layout_below="@id/date"
+        android:layout_marginTop="8dp"
+        app:autoSizeMaxTextSize="100sp"
+        app:autoSizeMinTextSize="8sp"
+        app:autoSizeStepGranularity="2sp"
+        app:autoSizeTextType="uniform"
+        android:inputType="number"
+        android:hint="Enter weight"
+        android:layout_width="match_parent"
+        android:layout_height="40dp" />
+
+    <RadioGroup
+        android:layout_below="@id/weight"
+        android:id="@+id/radioSex"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+        <RadioButton
+            android:id="@+id/radioMale"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Male"
+            android:checked="true" />
+
+        <RadioButton
+            android:id="@+id/radioFemale"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Female" />
+
+    </RadioGroup>
+
+</RelativeLayout>

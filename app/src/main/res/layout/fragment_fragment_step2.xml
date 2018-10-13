@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:padding="8dp"
+    android:layout_height="match_parent"
+    tools:context=".FragmentStep2">
+
+    <CheckBox
+        android:id="@+id/death"
+        android:text="Death"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <CheckBox
+        android:layout_below="@id/death"
+        android:id="@+id/life"
+        android:text="Life Threatening"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <CheckBox
+        android:layout_below="@id/life"
+        android:id="@+id/hospital"
+        android:text="Hospitalization"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <CheckBox
+        android:layout_below="@id/hospital"
+        android:id="@+id/cogen"
+        android:text="Cogential"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <CheckBox
+        android:layout_below="@id/cogen"
+        android:id="@+id/other"
+        android:text="Other"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <EditText
+        android:id="@+id/adverse"
+        android:visibility="invisible"
+        android:inputType="text"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_below="@id/other"
+        android:hint="Adverse Outcomes"/>
+
+    <EditText
+        android:layout_below="@id/adverse"
+        android:id="@+id/start_date"
+        android:inputType="date"
+        android:hint="Start Date"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <EditText
+        android:layout_below="@id/start_date"
+        android:id="@+id/end_date"
+        android:inputType="date"
+        android:hint="End Date"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <ScrollView
+        android:layout_below="@id/end_date"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <EditText
+                android:id="@+id/desc"
+                android:inputType="text"
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
+                android:hint="Description of the problem"/>
+
+            <EditText
+                android:id="@+id/test"
+                android:inputType="text"
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
+                android:hint="Lab test"/>
+
+            <EditText
+                android:id="@+id/pre"
+                android:inputType="text"
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
+                android:hint="Pre exisiting conditions"/>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</RelativeLayout>
