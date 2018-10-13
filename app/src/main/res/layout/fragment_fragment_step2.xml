@@ -11,8 +11,43 @@
         android:layout_height="wrap_content"
         tools:context=".FragmentStep2">
 
+        <CheckBox
+            android:id="@+id/death"
+            android:text="Death"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
 
         <EditText
+            android:id="@+id/deathdate"
+            android:hint="Death Date"
+            android:inputType="date"
+            android:layout_below="@id/death"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <CheckBox
+            android:layout_below="@id/deathdate"
+            android:id="@+id/life"
+            android:text="Life Threatening"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <CheckBox
+            android:layout_below="@id/life"
+            android:id="@+id/hospital"
+            android:text="Hospitalization"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <CheckBox
+            android:layout_below="@id/hospital"
+            android:id="@+id/cogen"
+            android:text="Cogential"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <EditText
+            android:layout_below="@id/cogen"
             android:id="@+id/adverse"
             android:inputType="text"
             android:layout_width="match_parent"

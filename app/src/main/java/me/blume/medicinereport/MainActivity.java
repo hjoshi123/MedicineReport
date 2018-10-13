@@ -18,7 +18,7 @@ public class MainActivity extends AppCompatActivity implements FragmentStep1.OnF
 	private Fragment mFragmentStep1 = new FragmentStep1();
 	private Fragment mFragmentStep2 = new FragmentStep2();
 	private Fragment mFragmentStep3 = new FragmentStep3();
-	private String mFirstName, mLastName, mSex, mWeight, mDob, mOutcomes, mStartDate, mEndDate, mLabTest, mCondition, mDescCondition;
+	private String mFirstName, mLastName, mSex, mWeight, mDob, mOutcomes, mStartDate, mEndDate, mLabTest, mCondition, mDescCondition, mDateOfDeath, mOther;
 	private FragmentTransaction mFragTrans;
 	private Button mNext, mPrevious, mSubmit;
 	private LinkedList<String> finalLinked;
@@ -115,24 +115,20 @@ public class MainActivity extends AppCompatActivity implements FragmentStep1.OnF
 		mSex = bundle.getString("gender");
 		mWeight = bundle.getString("weight");
 		mDob = Encode.trimDate(bundle.getString("dob"));
-		mOutcomes = bundle.getString("adverse");
-		mDescCondition = bundle.getString("desc");
-		mStartDate = bundle.getString("start_date");
-		mEndDate = bundle.getString("end_date");
-		mLabTest = bundle.getString("lab");
-		mCondition = bundle.getString("pre");
 
 		compileFinalLinked();
 	}
 
 	@Override
 	public void onFragmentInteraction2(Bundle bundle) {
-		mOutcomes = bundle.getString("adverse");
+		mOutcomes = bundle.getString("outcomes");
 		mDescCondition = bundle.getString("desc");
 		mStartDate = bundle.getString("start_date");
 		mEndDate = bundle.getString("end_date");
 		mLabTest = bundle.getString("lab");
 		mCondition = bundle.getString("pre");
+		mDateOfDeath = bundle.getString("death_date");
+		mOther = bundle.getString("adverse");
 	}
 
 	@Override
