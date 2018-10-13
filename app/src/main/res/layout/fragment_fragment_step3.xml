@@ -164,7 +164,122 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:singleLine="true"
-                android:hint="Dian" />
+                android:hint="Diagnosis" />
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.v7.widget.CardView
+            android:layout_below="@id/diagnose"
+            android:layout_width="match_parent"
+            android:id="@+id/event_abate"
+            card_view:cardUseCompatPadding="true"
+            card_view:cardElevation="4dp"
+            card_view:cardCornerRadius="4dp"
+            android:layout_height="match_parent">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:text="Event Abatement"
+                    android:textAlignment="center"
+                    android:textSize="15sp"
+                    android:textColor="#000"
+                    android:id="@+id/event"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+                <CheckBox
+                    android:layout_below="@id/event"
+                    android:id="@+id/yes"
+                    android:text="Yes"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+                <CheckBox
+                    android:layout_below="@id/yes"
+                    android:id="@+id/no"
+                    android:text="NO"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+                <CheckBox
+                    android:id="@+id/na"
+                    android:layout_below="@id/no"
+                    android:text="NA"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+            </RelativeLayout>
+
+        </android.support.v7.widget.CardView>
+
+        <android.support.v7.widget.CardView
+            android:layout_below="@id/event_abate"
+            android:layout_width="match_parent"
+            card_view:cardUseCompatPadding="true"
+            card_view:cardElevation="4dp"
+            android:id="@+id/manufac_details"
+            card_view:cardCornerRadius="4dp"
+            android:layout_height="match_parent">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:text="Drug Manufacturer (See pack)"
+                    android:textColor="#000"
+                    android:textAlignment="center"
+                    android:textSize="18sp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+                <android.support.design.widget.TextInputLayout
+                    android:id="@+id/lot"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <EditText
+                        android:inputType="text"
+                        android:id="@+id/input_lot"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:singleLine="true"
+                        android:hint="Lot No" />
+                </android.support.design.widget.TextInputLayout>
+
+                <android.support.design.widget.TextInputLayout
+                    android:id="@+id/exp_date"
+                    android:layout_below="@id/lot"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <EditText
+                        android:inputType="date"
+                        android:id="@+id/input_exp_date"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:singleLine="true"
+                        android:hint="Expiry details" />
+                </android.support.design.widget.TextInputLayout>
+
+            </RelativeLayout>
+
+        </android.support.v7.widget.CardView>
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/herbal"
+            android:layout_below="@id/manufac_details"
+            android:layout_width="match_parent"
+            android:layout_marginBottom="8dp"
+            android:layout_height="wrap_content">
+            <EditText
+                android:inputType="date"
+                android:id="@+id/input_herbal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:singleLine="true"
+                android:hint="Herbal and Therapy Details" />
         </android.support.design.widget.TextInputLayout>
 
     </RelativeLayout>

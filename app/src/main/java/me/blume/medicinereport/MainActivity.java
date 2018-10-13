@@ -14,11 +14,14 @@ import java.util.LinkedList;
 
 import me.blume.medicinereport.utils.Encode;
 
-public class MainActivity extends AppCompatActivity implements FragmentStep1.OnFragmentInteractionListener, FragmentStep2.OnFragmentInteractionListener {
+public class MainActivity extends AppCompatActivity implements FragmentStep1.OnFragmentInteractionListener, FragmentStep2.OnFragmentInteractionListener, FragmentStep3.OnFragmentInteractionListener {
 	private Fragment mFragmentStep1 = new FragmentStep1();
 	private Fragment mFragmentStep2 = new FragmentStep2();
 	private Fragment mFragmentStep3 = new FragmentStep3();
-	private String mFirstName, mLastName, mSex, mWeight, mDob, mOutcomes, mStartDate, mEndDate, mLabTest, mCondition, mDescCondition, mDateOfDeath, mOther;
+	private String mFirstName, mLastName, mSex, mWeight, mDob, mOutcomes, mStartDate,
+			mEndDate, mLabTest, mCondition, mDescCondition, mDateOfDeath, mOther, mDrugName,
+			mLabelledStrength, mManufacturer, mDose, mFreq, mRoute, mDiagnosis, mLotNo, mExpiry,
+			mHerbalTherapy, mEventAbate;
 	private FragmentTransaction mFragTrans;
 	private Button mNext, mPrevious, mSubmit;
 	private LinkedList<String> finalLinked;
@@ -168,5 +171,20 @@ public class MainActivity extends AppCompatActivity implements FragmentStep1.OnF
 
 
 		Log.d("LIT List", finalLinked.toString());
+	}
+
+	@Override
+	public void onFragmentInteraction3(Bundle bundle) {
+		mDrugName = bundle.getString("drug_name");
+		mLabelledStrength = bundle.getString("strength");
+		mRoute = bundle.getString("route");
+		mDiagnosis = bundle.getString("diagnosis");
+		mLotNo = bundle.getString("lotno");
+		mExpiry = bundle.getString("expiry");
+		mHerbalTherapy = bundle.getString("herbal");
+		mManufacturer = bundle.getString("manufac");
+		mDose = bundle.getString("dose");
+		mFreq = bundle.getString("mFreq");
+		mEventAbate = bundle.getString("event_abate");
 	}
 }
