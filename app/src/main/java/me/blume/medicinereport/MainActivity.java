@@ -12,6 +12,8 @@ import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.LinkedList;
 
+import me.blume.medicinereport.utils.Encode;
+
 public class MainActivity extends AppCompatActivity implements FragmentStep1.OnFragmentInteractionListener, FragmentStep2.OnFragmentInteractionListener {
 	private Fragment mFragmentStep1 = new FragmentStep1();
 	private Fragment mFragmentStep2 = new FragmentStep2();
@@ -112,6 +114,9 @@ public class MainActivity extends AppCompatActivity implements FragmentStep1.OnF
 		mLastName = bundle.getString("lName");
 		mSex = bundle.getString("gender");
 		mWeight = bundle.getString("weight");
+		mDob = Encode.trimDate(bundle.getString("dob"));
+
+		compileFinalLinked();
 	}
 
 	@Override
@@ -125,8 +130,15 @@ public class MainActivity extends AppCompatActivity implements FragmentStep1.OnF
 	}
 
 	public void compileFinalLinked(){
+		finalLinked.clear();
 		finalLinked.add(mFirstName);
 		finalLinked.add(mLastName);
+		finalLinked.add(mDob);
+		finalLinked.add(mSex);
+		finalLinked.add(mWeight);
 
+
+
+		Log.d("LIT List", finalLinked.toString());
 	}
 }

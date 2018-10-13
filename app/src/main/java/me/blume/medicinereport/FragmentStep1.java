@@ -109,6 +109,7 @@ public class FragmentStep1 extends Fragment {
 			mGender = "1";
 		}
 		bundle.putString("gender", mGender);
+        bundle.putString("dob", mDOB);
 		bundle.putString("weight",mWeight.getEditableText().toString());
 		mListener.onFragmentInteraction1(bundle);
 
