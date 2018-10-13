@@ -127,7 +127,12 @@ public class MainActivity extends AppCompatActivity implements FragmentStep1.OnF
 
 	@Override
 	public void onFragmentInteraction2(Bundle bundle) {
-
+		mOutcomes = bundle.getString("adverse");
+		mDescCondition = bundle.getString("desc");
+		mStartDate = bundle.getString("start_date");
+		mEndDate = bundle.getString("end_date");
+		mLabTest = bundle.getString("lab");
+		mCondition = bundle.getString("pre");
 	}
 
 	@Override
