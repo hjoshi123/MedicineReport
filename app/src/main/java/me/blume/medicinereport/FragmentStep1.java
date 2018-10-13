@@ -31,6 +31,7 @@ public class FragmentStep1 extends Fragment {
 	@Override
 	public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
 	                         Bundle savedInstanceState) {
+		Log.d("STEP","oncreateview works");
 		View view =  inflater.inflate(R.layout.fragment_fragment_step1, container, false);
 		mFName = view.findViewById(R.id.fname);
 		mLName = view.findViewById(R.id.lname);
@@ -42,6 +43,7 @@ public class FragmentStep1 extends Fragment {
 
 	@Override
 	public void onAttach(Context context) {
+		Log.d("STEP","attach works");
 		super.onAttach(context);
 		if (context instanceof OnFragmentInteractionListener) {
 			mListener = (OnFragmentInteractionListener) context;
@@ -53,6 +55,7 @@ public class FragmentStep1 extends Fragment {
 
 	@Override
 	public void onDetach() {
+		Log.d("STEP","detach works");
 		Bundle bundle = new Bundle();
 		Log.d("Fuck", "Hi there " + mFName.getEditableText().toString());
 		bundle.putString("fName",mFName.getEditableText().toString());
@@ -75,8 +78,10 @@ public class FragmentStep1 extends Fragment {
 	}
 
 	public interface OnFragmentInteractionListener {
+
 		void onFragmentInteraction1(Bundle bundle);
 	}
+
 
 	public void onButtonPressed(Bundle bundle) {
 		if (mListener != null) {

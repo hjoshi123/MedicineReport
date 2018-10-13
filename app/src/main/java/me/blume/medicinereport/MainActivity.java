@@ -11,7 +11,7 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 
-public class MainActivity extends AppCompatActivity implements FragmentStep1.OnFragmentInteractionListener {
+public class MainActivity extends AppCompatActivity implements FragmentStep1.OnFragmentInteractionListener, FragmentStep2.OnFragmentInteractionListener {
 	private Fragment mFragmentStep1 = new FragmentStep1();
 	private Fragment mFragmentStep2 = new FragmentStep2();
 	private String mFirstName, mLastName, mSex, mWeight;
@@ -106,5 +106,15 @@ public class MainActivity extends AppCompatActivity implements FragmentStep1.OnF
 		mLastName = bundle.getString("lName");
 		mSex = bundle.getString("gender");
 		mWeight = bundle.getString("weight");
+	}
+
+	@Override
+	public void onFragmentInteraction2(Bundle bundle) {
+
+	}
+
+	@Override
+	public void onPointerCaptureChanged(boolean hasCapture) {
+
 	}
 }
