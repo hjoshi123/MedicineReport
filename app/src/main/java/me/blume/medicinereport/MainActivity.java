@@ -18,7 +18,7 @@ public class MainActivity extends AppCompatActivity implements FragmentStep1.OnF
 	private Fragment mFragmentStep1 = new FragmentStep1();
 	private Fragment mFragmentStep2 = new FragmentStep2();
 	private Fragment mFragmentStep3 = new FragmentStep3();
-	private String mFirstName, mLastName, mSex, mWeight, mDob, mOutcomes, mStartDate, mEndDate;
+	private String mFirstName, mLastName, mSex, mWeight, mDob, mOutcomes, mStartDate, mEndDate, mLabTest, mCondition, mDescCondition;
 	private FragmentTransaction mFragTrans;
 	private Button mNext, mPrevious, mSubmit;
 	private LinkedList<String> finalLinked;
@@ -115,6 +115,12 @@ public class MainActivity extends AppCompatActivity implements FragmentStep1.OnF
 		mSex = bundle.getString("gender");
 		mWeight = bundle.getString("weight");
 		mDob = Encode.trimDate(bundle.getString("dob"));
+		mOutcomes = bundle.getString("adverse");
+		mDescCondition = bundle.getString("desc");
+		mStartDate = bundle.getString("start_date");
+		mEndDate = bundle.getString("end_date");
+		mLabTest = bundle.getString("lab");
+		mCondition = bundle.getString("pre");
 
 		compileFinalLinked();
 	}
@@ -136,9 +142,6 @@ public class MainActivity extends AppCompatActivity implements FragmentStep1.OnF
 		finalLinked.add(mDob);
 		finalLinked.add(mSex);
 		finalLinked.add(mWeight);
-
-
-
 		Log.d("LIT List", finalLinked.toString());
 	}
 }
