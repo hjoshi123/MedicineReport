@@ -46,6 +46,7 @@ public class FragmentStep2 extends Fragment {
 
 	@Override
 	public void onAttach(Context context) {
+		Log.d("ak", "attach works");
 		super.onAttach(context);
 		if (context instanceof OnFragmentInteractionListener) {
 			mListener = (OnFragmentInteractionListener) context;
@@ -57,6 +58,7 @@ public class FragmentStep2 extends Fragment {
 
 	@Override
 	public void onDetach() {
+		Log.d("ak", "detach works");
 		Bundle bundle = new Bundle();
 		String outcome = "";
 		if (mDeath.isChecked()) {

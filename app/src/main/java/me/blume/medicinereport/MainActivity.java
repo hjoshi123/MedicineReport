@@ -121,7 +121,10 @@ public class MainActivity extends AppCompatActivity implements FragmentStep1.OnF
 
 	@Override
 	public void onFragmentInteraction2(Bundle bundle) {
+		Log.d("ak", "frag interact works 2 works");
+
 		mOutcomes = bundle.getString("outcomes");
+		Log.d("ak", mOutcomes);
 		mDescCondition = bundle.getString("desc");
 		mStartDate = Encode.trimDate(bundle.getString("start_date"));
 		mEndDate = Encode.trimDate(bundle.getString("end_date"));
@@ -135,6 +138,8 @@ public class MainActivity extends AppCompatActivity implements FragmentStep1.OnF
 		outcomeList.add(mDateOfDeath);
 		outcomeList.add(mOther);
 		mOutcomes = Encode.getHyphenCat(outcomeList);
+
+		compileFinalLinked();
 	}
 
 	@Override
