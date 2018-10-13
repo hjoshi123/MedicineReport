@@ -20,7 +20,7 @@ public class FormRequest {
 		this.manager = manager;
 	}
 
-	protected void sendSMSOffline(final String phoneNumber) {
+	public void sendSMSOffline(final String phoneNumber) {
 		PermissionUtils.checkPermission(mActivity, Manifest.permission.SEND_SMS,
 			new PermissionUtils.PermissionAskListener() {
 				@Override
