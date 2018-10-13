@@ -123,12 +123,18 @@ public class MainActivity extends AppCompatActivity implements FragmentStep1.OnF
 	public void onFragmentInteraction2(Bundle bundle) {
 		mOutcomes = bundle.getString("outcomes");
 		mDescCondition = bundle.getString("desc");
-		mStartDate = bundle.getString("start_date");
-		mEndDate = bundle.getString("end_date");
+		mStartDate = Encode.trimDate(bundle.getString("start_date"));
+		mEndDate = Encode.trimDate(bundle.getString("end_date"));
 		mLabTest = bundle.getString("lab");
 		mCondition = bundle.getString("pre");
-		mDateOfDeath = bundle.getString("death_date");
+		mDateOfDeath = Encode.trimDate(bundle.getString("death_date"));
 		mOther = bundle.getString("adverse");
+
+		LinkedList<String> outcomeList = new LinkedList<>();
+		outcomeList.add(mOutcomes);
+		outcomeList.add(mDateOfDeath);
+		outcomeList.add(mOther);
+		mOutcomes = Encode.getHyphenCat(outcomeList);
 	}
 
 	@Override
@@ -137,12 +143,25 @@ public class MainActivity extends AppCompatActivity implements FragmentStep1.OnF
 	}
 
 	public void compileFinalLinked(){
+		//Fragment 1
 		finalLinked.clear();
 		finalLinked.add(mFirstName);
 		finalLinked.add(mLastName);
 		finalLinked.add(mDob);
 		finalLinked.add(mSex);
 		finalLinked.add(mWeight);
+
+		//Fragment 2
+		finalLinked.add(mOutcomes);
+		finalLinked.add(mStartDate);
+		finalLinked.add(mEndDate);
+		finalLinked.add(mDescCondition);
+		finalLinked.add(mLabTest);
+		finalLinked.add(mCondition);
+
+		//Fragment 3
+
+
 		Log.d("LIT List", finalLinked.toString());
 	}
 }
