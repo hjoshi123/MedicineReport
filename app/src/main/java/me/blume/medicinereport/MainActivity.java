@@ -10,14 +10,16 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 
 public class MainActivity extends AppCompatActivity implements FragmentStep1.OnFragmentInteractionListener, FragmentStep2.OnFragmentInteractionListener {
 	private Fragment mFragmentStep1 = new FragmentStep1();
 	private Fragment mFragmentStep2 = new FragmentStep2();
 	private Fragment mFragmentStep3 = new FragmentStep3();
-	private String mFirstName, mLastName, mSex, mWeight;
+	private String mFirstName, mLastName, mSex, mWeight, mDob, mOutcomes, mStartDate, mEndDate;
 	private FragmentTransaction mFragTrans;
 	private Button mNext, mPrevious, mSubmit;
+	private LinkedList<String> finalLinked;
 	private int i = 0;
 
 	@Override
@@ -27,6 +29,8 @@ public class MainActivity extends AppCompatActivity implements FragmentStep1.OnF
 		mNext = findViewById(R.id.next);
 		mPrevious = findViewById(R.id.back);
 		mSubmit = findViewById(R.id.submit);
+		finalLinked = new LinkedList<>();
+
 
 		final ArrayList<Fragment> fragments=new ArrayList<>();
 		fragments.add(mFragmentStep1);
@@ -117,6 +121,12 @@ public class MainActivity extends AppCompatActivity implements FragmentStep1.OnF
 
 	@Override
 	public void onPointerCaptureChanged(boolean hasCapture) {
+
+	}
+
+	public void compileFinalLinked(){
+		finalLinked.add(mFirstName);
+		finalLinked.add(mLastName);
 
 	}
 }
