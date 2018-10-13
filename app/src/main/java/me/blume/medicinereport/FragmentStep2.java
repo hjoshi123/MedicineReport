@@ -18,9 +18,8 @@ import android.widget.EditText;
  */
 public class FragmentStep2 extends Fragment {
 	private OnFragmentInteractionListener mListener;
-	private CheckBox mDeath, mLifeThreat, mHos, mCogen, mOther;
-	private EditText mAdverse;
-
+	private EditText mDeathDate, mAdverse, mStartDate, mEndDate, mDescription, mLabTest, mPreExistingCondition;
+	private CheckBox mDeath, mHospital, mCogenital, mLifeThreatening;
 	public FragmentStep2() {
 		// Required empty public constructor
 	}
@@ -31,17 +30,17 @@ public class FragmentStep2 extends Fragment {
 	                         Bundle savedInstanceState) {
 		// Inflate the layout for this fragment
 		View view = inflater.inflate(R.layout.fragment_fragment_step2, container, false);
-		mDeath = view.findViewById(R.id.death);
-		mLifeThreat = view.findViewById(R.id.life);
-		mHos = view.findViewById(R.id.hospital);
-		mCogen = view.findViewById(R.id.cogen);
-		mOther = view.findViewById(R.id.other);
 		mAdverse = view.findViewById(R.id.adverse);
-
-		if (mOther.isChecked()) {
-			mAdverse.setVisibility(View.VISIBLE);
-		}
-
+		mStartDate = view.findViewById(R.id.start_date);
+		mEndDate = view.findViewById(R.id.end_date);
+		mDescription = view.findViewById(R.id.desc);
+		mLabTest = view.findViewById(R.id.test);
+		mPreExistingCondition = view.findViewById(R.id.pre);
+		mDeathDate = view.findViewById(R.id.deathdate);
+		mDeath = view.findViewById(R.id.death);
+		mHospital = view.findViewById(R.id.hospital);
+		mCogenital = view.findViewById(R.id.cogen);
+		mLifeThreatening = view.findViewById(R.id.life);
 		return view;
 	}
 
@@ -59,7 +58,27 @@ public class FragmentStep2 extends Fragment {
 	@Override
 	public void onDetach() {
 		Bundle bundle = new Bundle();
-
+		String outcome = "";
+		if (mDeath.isChecked()) {
+			outcome += "0";
+		}
+		if (mLifeThreatening.isChecked()) {
+			outcome += "1";
+		}
+		if (mHospital.isChecked()) {
+			outcome += "2";
+		}
+		if (mCogenital.isChecked()) {
+			outcome += "3";
+		}
+		bundle.putString("adverse", mAdverse.getEditableText().toString());
+		bundle.putString("death_date", mDeathDate.getEditableText().toString());
+		bundle.putString("start_date", mStartDate.getEditableText().toString());
+		bundle.putString("end_date", mEndDate.getEditableText().toString());
+		bundle.putString("desc", mDescription.getEditableText().toString());
+		bundle.putString("lab", mLabTest.getEditableText().toString());
+		bundle.putString("pre", mPreExistingCondition.getEditableText().toString());
+		bundle.putString("outcomes", outcome);
 		mListener.onFragmentInteraction2(bundle);
 
 		super.onDetach();
