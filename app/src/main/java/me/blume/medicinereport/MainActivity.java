@@ -14,6 +14,7 @@ import java.util.ArrayList;
 public class MainActivity extends AppCompatActivity implements FragmentStep1.OnFragmentInteractionListener, FragmentStep2.OnFragmentInteractionListener {
 	private Fragment mFragmentStep1 = new FragmentStep1();
 	private Fragment mFragmentStep2 = new FragmentStep2();
+	private Fragment mFragmentStep3 = new FragmentStep3();
 	private String mFirstName, mLastName, mSex, mWeight;
 	private FragmentTransaction mFragTrans;
 	private Button mNext, mPrevious, mSubmit;
@@ -30,6 +31,7 @@ public class MainActivity extends AppCompatActivity implements FragmentStep1.OnF
 		final ArrayList<Fragment> fragments=new ArrayList<>();
 		fragments.add(mFragmentStep1);
 		fragments.add(mFragmentStep2);
+		fragments.add(mFragmentStep3);
 
 		mFragTrans = getSupportFragmentManager().beginTransaction();
 		mFragTrans.replace(R.id.mainframe, fragments.get(0));
