@@ -1,6 +1,7 @@
 package me.blume.medicinereport;
 
 
+import android.app.DatePickerDialog;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -10,22 +11,42 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.DatePicker;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Locale;
 
 
 /**
  * A simple {@link Fragment} subclass.
  */
 public class FragmentStep1 extends Fragment {
-	private AppCompatEditText mFName, mLName, mWeight;
+	private AppCompatEditText mFName, mLName, mWeight, mDate;
 	private OnFragmentInteractionListener mListener;
-	private String mGender;
+	private String mGender, mDOB;
 	private RadioGroup mRadioGroup;
 
 	public FragmentStep1() {
 		// Required empty public constructor
 	}
+
+	Calendar myCalendar = Calendar.getInstance();
+
+	DatePickerDialog.OnDateSetListener date = new DatePickerDialog.OnDateSetListener() {
+
+		@Override
+		public void onDateSet(DatePicker view, int year, int monthOfYear,
+		                      int dayOfMonth) {
+			myCalendar.set(Calendar.YEAR, year);
+			myCalendar.set(Calendar.MONTH, monthOfYear);
+			myCalendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
+			updateLabel();
+		}
+
+	};
 
 
 	@Override
@@ -37,7 +58,16 @@ public class FragmentStep1 extends Fragment {
 		mLName = view.findViewById(R.id.lname);
 		mRadioGroup = view.findViewById(R.id.radioSex);
 		mWeight= view.findViewById(R.id.weight);
+		mDate = view.findViewById(R.id.date);
 
+		mDate.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View view) {
+				new DatePickerDialog(getActivity(), date, myCalendar
+						.get(Calendar.YEAR), myCalendar.get(Calendar.MONTH),
+						myCalendar.get(Calendar.DAY_OF_MONTH)).show();
+			}
+		});
 		return view;
 	}
 
@@ -51,6 +81,15 @@ public class FragmentStep1 extends Fragment {
 			throw new RuntimeException(context.toString()
 					+ " must implement OnFragmentInteractionListener");
 		}
+	}
+
+	private void updateLabel() {
+		String myFormat = "dd/MM/yy"; //In which you need put here
+		SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.US);
+
+		mDate.setText(sdf.format(myCalendar.getTime()));
+		mDOB = sdf.format(myCalendar.getTime());
+		Log.d("Hello", mDOB);
 	}
 
 	@Override
@@ -67,7 +106,7 @@ public class FragmentStep1 extends Fragment {
 		if (selectedId == R.id.radioMale) {
 			mGender = "0";
 		} else if (selectedId == R.id.radioFemale) {
-			mGender = "0";
+			mGender = "1";
 		}
 		bundle.putString("gender", mGender);
 		bundle.putString("weight",mWeight.getEditableText().toString());
