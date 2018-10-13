@@ -18,8 +18,7 @@ import android.widget.EditText;
  */
 public class FragmentStep2 extends Fragment {
 	private OnFragmentInteractionListener mListener;
-	private CheckBox mDeath, mLifeThreat, mHos, mCogen, mOther;
-	private EditText mAdverse;
+	private EditText mAdverse, mStartDate, mEndDate, mDescription, mLabTest, mPreExistingCondition;
 
 	public FragmentStep2() {
 		// Required empty public constructor
@@ -31,17 +30,12 @@ public class FragmentStep2 extends Fragment {
 	                         Bundle savedInstanceState) {
 		// Inflate the layout for this fragment
 		View view = inflater.inflate(R.layout.fragment_fragment_step2, container, false);
-		mDeath = view.findViewById(R.id.death);
-		mLifeThreat = view.findViewById(R.id.life);
-		mHos = view.findViewById(R.id.hospital);
-		mCogen = view.findViewById(R.id.cogen);
-		mOther = view.findViewById(R.id.other);
 		mAdverse = view.findViewById(R.id.adverse);
-
-		if (mOther.isChecked()) {
-			mAdverse.setVisibility(View.VISIBLE);
-		}
-
+		mStartDate = view.findViewById(R.id.start_date);
+		mEndDate = view.findViewById(R.id.end_date);
+		mDescription = view.findViewById(R.id.desc);
+		mLabTest = view.findViewById(R.id.test);
+		mPreExistingCondition = view.findViewById(R.id.pre);
 		return view;
 	}
 
@@ -59,7 +53,12 @@ public class FragmentStep2 extends Fragment {
 	@Override
 	public void onDetach() {
 		Bundle bundle = new Bundle();
-
+		bundle.putString("adverse", mAdverse.getEditableText().toString());
+		bundle.putString("start_date", mStartDate.getEditableText().toString());
+		bundle.putString("end_date", mEndDate.getEditableText().toString());
+		bundle.putString("desc", mDescription.getEditableText().toString());
+		bundle.putString("lab", mLabTest.getEditableText().toString());
+		bundle.putString("pre", mPreExistingCondition.getEditableText().toString());
 		mListener.onFragmentInteraction2(bundle);
 
 		super.onDetach();
