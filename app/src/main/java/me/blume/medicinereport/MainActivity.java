@@ -105,6 +105,7 @@ public class MainActivity extends AppCompatActivity implements FragmentStep1.OnF
 			@Override
 			public void onClick(View view) {
 				Toast.makeText(MainActivity.this, "Entered here", Toast.LENGTH_SHORT).show();
+				compileFinalLinked();
 			}
 		});
 	}
