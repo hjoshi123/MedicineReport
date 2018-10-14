@@ -151,6 +151,7 @@ public class MainActivity extends AppCompatActivity implements FragmentStep1.OnF
 
 	@Override
 	public void onFragmentInteraction3(Bundle bundle) {
+		Log.d("ak", "frag interact works 3 works");
 		mDrugName = bundle.getString("drug_name");
 		mLabelledStrength = bundle.getString("strength");
 		mRoute = bundle.getString("route");

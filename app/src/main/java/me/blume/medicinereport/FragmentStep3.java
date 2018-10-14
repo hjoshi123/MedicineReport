@@ -61,8 +61,9 @@ public class FragmentStep3 extends Fragment {
 
 	@Override
 	public void onDetach() {
-		Log.d("ak", "detach works");
+		Log.d("chunga", "detach works");
 		Bundle bundle = new Bundle();
+		Log.d("chunga", mDrugName.getEditableText().toString());
 		bundle.putString("drug_name", mDrugName.getEditableText().toString());
 		bundle.putString("strength", mLabelledStrength.getEditableText().toString());
 		bundle.putString("route", mRoute.getEditableText().toString());
