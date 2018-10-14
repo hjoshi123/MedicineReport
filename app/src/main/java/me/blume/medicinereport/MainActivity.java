@@ -134,13 +134,56 @@ public class MainActivity extends AppCompatActivity implements FragmentStep1.OnF
 		mLabTest = bundle.getString("lab");
 		mCondition = bundle.getString("pre");
 		mDateOfDeath = Encode.trimDate(bundle.getString("death_date"));
+		Log.d("ak", mDateOfDeath);
 		mOther = bundle.getString("adverse");
 
 		LinkedList<String> outcomeList = new LinkedList<>();
 		outcomeList.add(mOutcomes);
 		outcomeList.add(mDateOfDeath);
 		outcomeList.add(mOther);
+		Log.d("ak", outcomeList.toString());
 		mOutcomes = Encode.getHyphenCat(outcomeList);
+		Log.d("ak", "outcome to be submitted "+mOutcomes);
+
+		compileFinalLinked();
+	}
+
+	@Override
+	public void onFragmentInteraction3(Bundle bundle) {
+		mDrugName = bundle.getString("drug_name");
+		mLabelledStrength = bundle.getString("strength");
+		mRoute = bundle.getString("route");
+		mDiagnosis = bundle.getString("diagnosis");
+		mLotNo = bundle.getString("lotno");
+		mExpiry = bundle.getString("expiry");
+		mHerbalTherapy = bundle.getString("herbal");
+		mManufacturer = bundle.getString("manufac");
+		mDose = bundle.getString("dose");
+		mFreq = bundle.getString("mFreq");
+		mEventAbate = Encode.getStatus(bundle.getString("event_abate"));
+
+		LinkedList<String> drugList = new LinkedList<>();
+		drugList.add(mDrugName);
+		drugList.add(mLabelledStrength);
+		drugList.add(mManufacturer);
+		mDrugName = Encode.getHyphenCat(drugList);
+
+		drugList = new LinkedList<>();
+		drugList.add(mDose);
+		drugList.add(mFreq);
+		drugList.add(mRoute);
+		mDose = Encode.getHyphenCat(drugList);
+
+		drugList = new LinkedList<>();
+		drugList.add("090818");
+		drugList.add("061018");
+		mFreq = Encode.getHyphenCat(drugList);
+
+		drugList = new LinkedList<>();
+		drugList.add(mLotNo);
+		drugList.add(mExpiry);
+		mLotNo = Encode.getHyphenCat(drugList);
+
 
 		compileFinalLinked();
 	}
@@ -168,23 +211,19 @@ public class MainActivity extends AppCompatActivity implements FragmentStep1.OnF
 		finalLinked.add(mCondition);
 
 		//Fragment 3
+		finalLinked.add(mDrugName);
+		finalLinked.add(mDose);
+		finalLinked.add(mFreq);
+		finalLinked.add(mDiagnosis);
+		finalLinked.add(mEventAbate);
+		finalLinked.add(mLotNo);
+		finalLinked.add("2");
+		finalLinked.add(mHerbalTherapy);
+
 
 
 		Log.d("LIT List", finalLinked.toString());
 	}
 
-	@Override
-	public void onFragmentInteraction3(Bundle bundle) {
-		mDrugName = bundle.getString("drug_name");
-		mLabelledStrength = bundle.getString("strength");
-		mRoute = bundle.getString("route");
-		mDiagnosis = bundle.getString("diagnosis");
-		mLotNo = bundle.getString("lotno");
-		mExpiry = bundle.getString("expiry");
-		mHerbalTherapy = bundle.getString("herbal");
-		mManufacturer = bundle.getString("manufac");
-		mDose = bundle.getString("dose");
-		mFreq = bundle.getString("mFreq");
-		mEventAbate = bundle.getString("event_abate");
-	}
+
 }

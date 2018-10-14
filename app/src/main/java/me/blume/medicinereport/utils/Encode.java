@@ -18,8 +18,13 @@ public class Encode{
     }
 
     public static String trimDate(String input) {
-        input = input.replace("/","");
-        input = input.replace("-","");
+        if (null == input) {
+           //Do nothing
+        }
+        else {
+            input = input.replace("/", "");
+            input = input.replace("-", "");
+        }
         return input;
     }
 
@@ -35,7 +40,7 @@ public class Encode{
     public static String getHyphenCat(LinkedList<String> input) {
         String hyphenString = "";
         for (String item : input) {
-            hyphenString = hyphenString + "-";
+            hyphenString = hyphenString + item + "-";
         }
         return (hyphenString == null || hyphenString.length() == 0) ? null : (hyphenString.substring(0, hyphenString.length() - 1));
 
@@ -44,10 +49,23 @@ public class Encode{
     public static String getUnderCat(LinkedList<String> input) {
         String underString = "";
         for (String item : input) {
-            underString = underString + "_";
+            underString = underString + item+ "_";
         }
         return (underString == null || underString.length() == 0) ? null : (underString.substring(0, underString.length() - 1));
 
+    }
+
+    public static String getStatus(String input) {
+        if (null == input) {}
+        else {
+            if (input.equals("YES"))
+                return "0";
+            else if (input.equals("NO"))
+                return "1";
+            else
+                return "2";
+        }
+        return "2";
     }
 
 }
