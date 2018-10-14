@@ -18,7 +18,8 @@ public class MainActivity extends AppCompatActivity implements FragmentStep1.OnF
 	private Fragment mFragmentStep1 = new FragmentStep1();
 	private Fragment mFragmentStep2 = new FragmentStep2();
 	private Fragment mFragmentStep3 = new FragmentStep3();
-	private String mFirstName, mLastName, mSex, mWeight, mDob, mOutcomes, mStartDate,
+	private Fragment mFragmentStep4 = new Step4();
+ 	private String mFirstName, mLastName, mSex, mWeight, mDob, mOutcomes, mStartDate,
 			mEndDate, mLabTest, mCondition, mDescCondition, mDateOfDeath, mOther, mDrugName,
 			mLabelledStrength, mManufacturer, mDose, mFreq, mRoute, mDiagnosis, mLotNo, mExpiry,
 			mHerbalTherapy, mEventAbate;
@@ -41,6 +42,7 @@ public class MainActivity extends AppCompatActivity implements FragmentStep1.OnF
 		fragments.add(mFragmentStep1);
 		fragments.add(mFragmentStep2);
 		fragments.add(mFragmentStep3);
+		fragments.add(mFragmentStep4);
 
 		mFragTrans = getSupportFragmentManager().beginTransaction();
 		mFragTrans.replace(R.id.mainframe, fragments.get(0));
@@ -50,27 +52,27 @@ public class MainActivity extends AppCompatActivity implements FragmentStep1.OnF
 			@Override
 			public void onClick(View view) {
 
-				mFragTrans = getSupportFragmentManager().beginTransaction();
+			mFragTrans = getSupportFragmentManager().beginTransaction();
+			if(i == fragments.size() - 1) {
+				Toast.makeText(MainActivity.this, "Last Fragment", Toast.LENGTH_SHORT).show();
+				mSubmit.setVisibility(View.VISIBLE);
+			} else {
+				mFragTrans.replace(R.id.mainframe,fragments.get(++i));
+				mFragTrans.commit();
+
 				if(i == fragments.size() - 1) {
-					Toast.makeText(MainActivity.this, "Last Fragment", Toast.LENGTH_SHORT).show();
+					mNext.setVisibility(View.INVISIBLE);
 					mSubmit.setVisibility(View.VISIBLE);
 				} else {
-					mFragTrans.replace(R.id.mainframe,fragments.get(++i));
-					mFragTrans.commit();
-
-					if(i == fragments.size() - 1) {
-						mNext.setVisibility(View.INVISIBLE);
-						mSubmit.setVisibility(View.VISIBLE);
-					} else {
-						mNext.setVisibility(View.VISIBLE);
-						mSubmit.setVisibility(View.GONE);
-					}
-
-					if(i == 0)
-						mPrevious.setVisibility(View.INVISIBLE);
-					else
-						mPrevious.setVisibility(View.VISIBLE);
+					mNext.setVisibility(View.VISIBLE);
+					mSubmit.setVisibility(View.GONE);
 				}
+
+				if(i == 0)
+					mPrevious.setVisibility(View.INVISIBLE);
+				else
+					mPrevious.setVisibility(View.VISIBLE);
+			}
 			}
 		});
 
@@ -79,8 +81,8 @@ public class MainActivity extends AppCompatActivity implements FragmentStep1.OnF
 			public void onClick(View view) {
 
 				mFragTrans = getSupportFragmentManager().beginTransaction();
-				if(i == fragments.size() - 1) {
-					Toast.makeText(MainActivity.this, "Last Fragment", Toast.LENGTH_SHORT).show();
+				if(i == 0) {
+					Toast.makeText(MainActivity.this, "First Fragment", Toast.LENGTH_SHORT).show();
 				} else {
 					mFragTrans.replace(R.id.mainframe,fragments.get(--i));
 					mFragTrans.commit();
