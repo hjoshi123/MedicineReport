@@ -13,6 +13,7 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 
 import me.blume.medicinereport.utils.Encode;
+import me.blume.medicinereport.utils.SendSMS;
 
 public class MainActivity extends AppCompatActivity implements FragmentStep1.OnFragmentInteractionListener, FragmentStep2.OnFragmentInteractionListener,
 		FragmentStep3.OnFragmentInteractionListener, Step4.OnFragmentInteractionListener {
@@ -24,12 +25,13 @@ public class MainActivity extends AppCompatActivity implements FragmentStep1.OnF
  	private String mFirstName, mLastName, mSex, mWeight, mDob, mOutcomes, mStartDate,
 			mEndDate, mLabTest, mCondition, mDescCondition, mDateOfDeath, mOther, mDrugName,
 			mLabelledStrength, mManufacturer, mDose, mFreq, mRoute, mDiagnosis, mLotNo, mExpiry,
-			mHerbalTherapy, mEventAbate, mClinicianNA, mClinicianPin, mTelephoneNo, mSpeciality,
-		  mReporterNA, mReporterPhone, mReporterOccupation;
+			mHerbalTherapy, mEventAbate, mClinicianName, mClinicAddress, mClinicianPin, mTelephoneNo, mSpeciality,
+		  mReporterNA, mReporterPhone, mReporterOccupation, mHealthProf;
 	private FragmentTransaction mFragTrans;
 	private Button mNext, mPrevious, mSubmit;
 	private LinkedList<String> finalLinked;
 	private int i = 0;
+	private String finalBodyString = "";
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -39,6 +41,8 @@ public class MainActivity extends AppCompatActivity implements FragmentStep1.OnF
 		mPrevious = findViewById(R.id.back);
 		mSubmit = findViewById(R.id.submit);
 		finalLinked = new LinkedList<>();
+
+
 
 
 		final ArrayList<Fragment> fragments=new ArrayList<>();
@@ -112,7 +116,11 @@ public class MainActivity extends AppCompatActivity implements FragmentStep1.OnF
 			public void onClick(View view) {
 				Toast.makeText(MainActivity.this, "Entered here", Toast.LENGTH_SHORT).show();
 				compileFinalLinked();
+				Log.d("SMS", finalBodyString);
+				SendSMS.send(finalBodyString, MainActivity.this);
 			}
+
+
 		});
 	}
 
@@ -197,6 +205,38 @@ public class MainActivity extends AppCompatActivity implements FragmentStep1.OnF
 	}
 
 	@Override
+	public void onFragmentInteraction4(Bundle bundle) {
+		mClinicianName = bundle.getString("clinic_name");
+		Log.d("MainAc", mClinicianName);
+		mClinicAddress = bundle.getString("clinic_address");
+		mClinicianPin = bundle.getString("clinic_pin");
+		mTelephoneNo = bundle.getString("clinic_tele");
+		mSpeciality = bundle.getString("speciality");
+		mReporterNA = bundle.getString("reporter_addr");
+		mReporterPhone = bundle.getString("reporter_phone");
+		mReporterOccupation = bundle.getString("reporter_occu");
+		mHealthProf = bundle.getString("health_prof");
+
+		LinkedList<String> clinicList = new LinkedList<>();
+		clinicList.add(mClinicianName);
+		clinicList.add(mClinicAddress);
+		clinicList.add(mClinicianPin);
+		clinicList.add(mTelephoneNo);
+		clinicList.add(mSpeciality);
+
+		mClinicianName = Encode.getUnderCat(clinicList);
+
+		clinicList = new LinkedList<>();
+		clinicList.add(mReporterNA);
+		clinicList.add(mReporterPhone);
+
+		mReporterNA = Encode.getUnderCat(clinicList);
+
+
+		compileFinalLinked();
+	}
+
+	@Override
 	public void onPointerCaptureChanged(boolean hasCapture) {
 
 	}
@@ -228,21 +268,19 @@ public class MainActivity extends AppCompatActivity implements FragmentStep1.OnF
 		finalLinked.add("2");
 		finalLinked.add(mHerbalTherapy);
 
+		//Fragment 4
+		finalLinked.add(mClinicianName);
+		finalLinked.add(mReporterNA);
+		finalLinked.add("141018");
+		finalLinked.add(mHealthProf);
+		finalLinked.add(mReporterOccupation);
 
 
 		Log.d("LIT List", finalLinked.toString());
+		finalBodyString = Encode.getFinalString(finalLinked);
+		Log.d("LIT List", finalBodyString);
 	}
 
 
-	@Override
-	public void onFragmentInteraction4(Bundle bundle) {
-		Log.d("MainAc", mClinicianNA);
-		mClinicianNA = bundle.getString("clinic_addr");
-		mClinicianPin = bundle.getString("clinic_pin");
-		mTelephoneNo = bundle.getString("clinic_tele");
-		mSpeciality = bundle.getString("speciality");
-		mReporterNA = bundle.getString("reporter_addr");
-		mReporterPhone = bundle.getString("reporter_phone");
-		mReporterOccupation = bundle.getString("reporter_occu");
-	}
+
 }

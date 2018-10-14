@@ -10,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
+import android.widget.RadioGroup;
 
 
 /**
@@ -17,8 +18,8 @@ import android.widget.EditText;
  */
 public class Step4 extends Fragment {
 	private OnFragmentInteractionListener mListener;
-	private EditText mClinicianNA, mClinicianPin, mTelephoneNo, mSpeciality, mReporterNA, mReporterPhone, mReporterOccupation;
-
+	private EditText mClinicianName, mClinicAddress, mClinicianPin, mTelephoneNo, mSpeciality, mReporterNA, mReporterPhone, mReporterOccupation;
+    private RadioGroup mRadioGroup;
 	public Step4() {
 		// Required empty public constructor
 	}
@@ -29,19 +30,21 @@ public class Step4 extends Fragment {
 	                         Bundle savedInstanceState) {
 		// Inflate the layout for this fragment
 		View view = inflater.inflate(R.layout.fragment_step4, container, false);
-		mClinicianNA = view.findViewById(R.id.input_clinic_title);
+		mClinicianName = view.findViewById(R.id.input_clinic_title);
+		mClinicAddress = view.findViewById(R.id.input_clinic_address);
 		mClinicianPin = view.findViewById(R.id.input_pincode);
 		mTelephoneNo = view.findViewById(R.id.input_telephone);
 		mSpeciality = view.findViewById(R.id.input_speciality);
 		mReporterNA = view.findViewById(R.id.input_report_title);
 		mReporterPhone = view.findViewById(R.id.input_reporter_phone);
 		mReporterOccupation = view.findViewById(R.id.occupation);
+		mRadioGroup = view.findViewById(R.id.radioProf);
 		return view;
 	}
 
 	@Override
 	public void onAttach(Context context) {
-		Log.d("ak", "attach works");
+		Log.d("mada", "attach works");
 		super.onAttach(context);
 		if (context instanceof OnFragmentInteractionListener) {
 			mListener = (OnFragmentInteractionListener) context;
@@ -53,15 +56,25 @@ public class Step4 extends Fragment {
 
 	@Override
 	public void onDetach() {
-		Log.d("chunga", "detach works");
+		Log.d("mada", "detach works");
 		Bundle bundle = new Bundle();
-		bundle.putString("clinic_addr", mClinicianNA.getEditableText().toString());
+		String prof = "";
+        int selectedId = mRadioGroup.getCheckedRadioButtonId();
+        if (selectedId == R.id.radioNo) {
+            prof = "0";
+        } else if (selectedId == R.id.radioYes) {
+            prof = "1";
+        }
+
+        bundle.putString("clinic_name", mClinicianName.getEditableText().toString());
+		bundle.putString("clinic_address", mClinicAddress.getEditableText().toString());
 		bundle.putString("clinic_pin", mClinicianPin.getEditableText().toString());
 		bundle.putString("clinic_tele", mTelephoneNo.getEditableText().toString());
 		bundle.putString("speciality", mSpeciality.getEditableText().toString());
 		bundle.putString("reporter_addr", mReporterNA.getEditableText().toString());
 		bundle.putString("reporter_phone", mReporterPhone.getEditableText().toString());
 		bundle.putString("reporter_occu", mReporterOccupation.getEditableText().toString());
+		bundle.putString("health_prof", prof);
 		mListener.onFragmentInteraction4(bundle);
 
 		super.onDetach();
