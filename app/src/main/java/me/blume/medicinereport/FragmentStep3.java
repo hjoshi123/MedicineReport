@@ -90,6 +90,4 @@ public class FragmentStep3 extends Fragment {
 	public interface OnFragmentInteractionListener {
 		void onFragmentInteraction3(Bundle bundle);
 	}
-
-
 }

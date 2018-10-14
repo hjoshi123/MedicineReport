@@ -14,15 +14,18 @@ import java.util.LinkedList;
 
 import me.blume.medicinereport.utils.Encode;
 
-public class MainActivity extends AppCompatActivity implements FragmentStep1.OnFragmentInteractionListener, FragmentStep2.OnFragmentInteractionListener, FragmentStep3.OnFragmentInteractionListener {
+public class MainActivity extends AppCompatActivity implements FragmentStep1.OnFragmentInteractionListener, FragmentStep2.OnFragmentInteractionListener,
+		FragmentStep3.OnFragmentInteractionListener, Step4.OnFragmentInteractionListener {
 	private Fragment mFragmentStep1 = new FragmentStep1();
 	private Fragment mFragmentStep2 = new FragmentStep2();
 	private Fragment mFragmentStep3 = new FragmentStep3();
+	private Fragment mFragmentBlank = new BlankFragment();
 	private Fragment mFragmentStep4 = new Step4();
  	private String mFirstName, mLastName, mSex, mWeight, mDob, mOutcomes, mStartDate,
 			mEndDate, mLabTest, mCondition, mDescCondition, mDateOfDeath, mOther, mDrugName,
 			mLabelledStrength, mManufacturer, mDose, mFreq, mRoute, mDiagnosis, mLotNo, mExpiry,
-			mHerbalTherapy, mEventAbate;
+			mHerbalTherapy, mEventAbate, mClinicianNA, mClinicianPin, mTelephoneNo, mSpeciality,
+		  mReporterNA, mReporterPhone, mReporterOccupation;
 	private FragmentTransaction mFragTrans;
 	private Button mNext, mPrevious, mSubmit;
 	private LinkedList<String> finalLinked;
@@ -43,6 +46,7 @@ public class MainActivity extends AppCompatActivity implements FragmentStep1.OnF
 		fragments.add(mFragmentStep2);
 		fragments.add(mFragmentStep3);
 		fragments.add(mFragmentStep4);
+		fragments.add(mFragmentBlank);
 
 		mFragTrans = getSupportFragmentManager().beginTransaction();
 		mFragTrans.replace(R.id.mainframe, fragments.get(0));
@@ -230,4 +234,15 @@ public class MainActivity extends AppCompatActivity implements FragmentStep1.OnF
 	}
 
 
+	@Override
+	public void onFragmentInteraction4(Bundle bundle) {
+		Log.d("MainAc", mClinicianNA);
+		mClinicianNA = bundle.getString("clinic_addr");
+		mClinicianPin = bundle.getString("clinic_pin");
+		mTelephoneNo = bundle.getString("clinic_tele");
+		mSpeciality = bundle.getString("speciality");
+		mReporterNA = bundle.getString("reporter_addr");
+		mReporterPhone = bundle.getString("reporter_phone");
+		mReporterOccupation = bundle.getString("reporter_occu");
+	}
 }
